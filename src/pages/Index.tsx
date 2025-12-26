@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import bannerImage from "@/assets/profile-banner.png";
 import galleryImage from "@/assets/profile-gallery-1.png";
 import { Card, CardContent } from "@/components/ui/card";
@@ -8,6 +8,12 @@ import { Badge } from "@/components/ui/badge";
 const MODEL_NAME = "Luna Noir";
 const MODEL_CITY = "São Paulo, SP";
 const WHATSAPP_NUMBER = "5511999999999"; // Ajuste para o número da modelo
+
+type QuizAnswers = {
+  service?: string;
+  when?: string;
+  location?: string;
+};
 
 const Index = () => {
   useEffect(() => {
@@ -33,10 +39,40 @@ const Index = () => {
     canonical.href = window.location.href;
   }, []);
 
-  const handleWhatsAppClick = () => {
-    const text = `Olá, vi seu perfil (${MODEL_NAME}) no site e quero combinar um programa. Podemos falar por aqui?`;
+  const [quizOpen, setQuizOpen] = useState(false);
+  const [quizStep, setQuizStep] = useState(1);
+  const [quizAnswers, setQuizAnswers] = useState<QuizAnswers>({});
+
+  const openQuiz = () => {
+    setQuizOpen(true);
+    setQuizStep(1);
+    setQuizAnswers({});
+  };
+
+  const handleSelect = (field: keyof QuizAnswers, value: string) => {
+    setQuizAnswers((prev) => ({ ...prev, [field]: value }));
+    setQuizStep((prev) => Math.min(prev + 1, 3));
+  };
+
+  const finalizeWhatsApp = () => {
+    const parts: string[] = [`Olá, vi seu perfil (${MODEL_NAME}) no site.`];
+
+    if (quizAnswers.service) {
+      parts.push(`Quero ${quizAnswers.service}.`);
+    }
+    if (quizAnswers.when) {
+      parts.push(`Para: ${quizAnswers.when}.`);
+    }
+    if (quizAnswers.location) {
+      parts.push(`Local: ${quizAnswers.location}.`);
+    }
+
+    parts.push("Podemos falar por aqui?");
+
+    const text = parts.join(" ");
     const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`;
     window.open(url, "_blank", "noopener,noreferrer");
+    setQuizOpen(false);
   };
 
   return (
@@ -79,8 +115,8 @@ const Index = () => {
           </p>
 
           <div className="mt-auto max-w-sm space-y-2 pt-1">
-            <Button className="w-full" size="lg" onClick={handleWhatsAppClick}>
-              Chamar no WhatsApp para programa
+            <Button className="w-full" size="lg" onClick={openQuiz}>
+              Chamar no WhatsApp
             </Button>
             <p className="text-center text-[11px] leading-relaxed text-muted-foreground">
               Você será redirecionado para o WhatsApp. Nenhum pagamento é feito pelo site, apenas o contato com a
