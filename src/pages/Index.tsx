@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
-import bannerImage from "@/assets/profile-banner.png";
-import galleryImage from "@/assets/profile-gallery-1.png";
+import bannerImageFallback from "@/assets/profile-banner.png";
+import profileImageFallback from "@/assets/profile-gallery-1.png";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { PhoneCall, Camera, Video } from "lucide-react";
+import { supabase } from "@/integrations/supabase/client";
 
 const MODEL_NAME = "Tereza";
 const MODEL_CITY = "São Paulo, SP";
@@ -43,6 +44,26 @@ const Index = () => {
   const [quizOpen, setQuizOpen] = useState(false);
   const [quizStep, setQuizStep] = useState(1);
   const [quizAnswers, setQuizAnswers] = useState<QuizAnswers>({});
+  const [profileImageUrl, setProfileImageUrl] = useState<string | null>(null);
+  const [bannerImageUrl, setBannerImageUrl] = useState<string | null>(null);
+
+  useEffect(() => {
+    const loadImages = async () => {
+      const { data, error } = await supabase
+        .from("profile_assets")
+        .select("profile_url,banner_url")
+        .order("created_at", { ascending: false })
+        .limit(1)
+        .maybeSingle();
+
+      if (!error && data) {
+        if (data.profile_url) setProfileImageUrl(data.profile_url);
+        if (data.banner_url) setBannerImageUrl(data.banner_url);
+      }
+    };
+
+    loadImages();
+  }, []);
 
   const openQuiz = () => {
     setQuizOpen(true);
@@ -352,7 +373,7 @@ const Index = () => {
       <Card className="surface-card-hover flex min-h-screen w-full flex-col overflow-hidden border border-border/70 bg-background-soft rounded-none">
         <div className="relative h-24 w-full overflow-hidden">
           <img
-            src={bannerImage}
+            src={bannerImageUrl ?? bannerImageFallback}
             alt={`Banner de perfil de ${MODEL_NAME}`}
             className="h-full w-full object-cover"
             loading="lazy"
@@ -364,7 +385,7 @@ const Index = () => {
           <div className="flex flex-wrap items-center gap-4">
             <div className="relative -mt-12 h-24 w-24 overflow-hidden rounded-full border-2 border-border bg-background">
               <img
-                src={galleryImage}
+                src={profileImageUrl ?? profileImageFallback}
                 alt={`Foto de perfil de ${MODEL_NAME}`}
                 className="h-full w-full object-cover"
                 loading="lazy"
