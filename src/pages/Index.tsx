@@ -132,6 +132,12 @@ const Index = () => {
             {quizStep === 1 && (
               <div className="space-y-3">
                 <p className="text-xs text-muted-foreground">1 de 3 — O que você procura?</p>
+                {userCity && (
+                  <p className="text-[11px] text-muted-foreground">
+                    Percebi que você é de {userCity}
+                    {userRegion ? `, ${userRegion}` : ""}. Também atendo aí.
+                  </p>
+                )}
                 <div className="space-y-2">
                   <Button
                     className="w-full justify-start gap-2"
@@ -394,11 +400,11 @@ const Index = () => {
       )}
 
       <Card className="surface-card-hover flex min-h-screen w-full flex-col overflow-hidden border border-border/70 bg-background-soft rounded-none">
-        <div className="relative w-full overflow-hidden">
+        <div className="relative h-32 md:h-40 w-full overflow-hidden">
           <img
             src={bannerImageUrl ?? bannerImageFallback}
             alt={`Banner de perfil de ${MODEL_NAME}`}
-            className="w-full h-auto max-h-48 md:max-h-56 object-contain"
+            className="h-full w-full object-cover"
             loading="lazy"
           />
           <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-background/95 via-background/40 to-transparent" />
@@ -430,7 +436,7 @@ const Index = () => {
               <p className="text-xs text-muted-foreground">
                 {userCity
                   ? `Atendo discretamente em ${userCity}${userRegion ? `, ${userRegion}` : ""} e região, combinando tudo direto pelo WhatsApp.`
-                  : "Também vendo conteúdos, packs e faço chamada de vídeo — tudo combinado direto pelo WhatsApp."}
+                  : "Atendo discretamente na sua cidade e região, combinando tudo direto pelo WhatsApp."}
               </p>
             </div>
           </div>
