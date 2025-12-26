@@ -4,6 +4,7 @@ import galleryImage from "@/assets/profile-gallery-1.png";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { PhoneCall, Camera, Video } from "lucide-react";
 
 const MODEL_NAME = "Luna Noir";
 const MODEL_CITY = "São Paulo, SP";
@@ -89,27 +90,30 @@ const Index = () => {
                 <p className="text-xs text-muted-foreground">1 de 3 — O que você procura?</p>
                 <div className="space-y-2">
                   <Button
-                    className="w-full"
+                    className="w-full justify-start gap-2"
                     variant="outline"
                     size="lg"
                     onClick={() => handleSelect("service", "marcar um programa presencial")}
                   >
+                    <PhoneCall className="h-4 w-4" />
                     Marcar programa presencial
                   </Button>
                   <Button
-                    className="w-full"
+                    className="w-full justify-start gap-2"
                     variant="outline"
                     size="lg"
                     onClick={() => handleSelect("service", "comprar conteúdos e fotos")}
                   >
+                    <Camera className="h-4 w-4" />
                     Comprar conteúdos / fotos
                   </Button>
                   <Button
-                    className="w-full"
+                    className="w-full justify-start gap-2"
                     variant="outline"
                     size="lg"
                     onClick={() => handleSelect("service", "fazer chamada de vídeo")}
                   >
+                    <Video className="h-4 w-4" />
                     Chamada de vídeo
                   </Button>
                 </div>
@@ -368,9 +372,14 @@ const Index = () => {
             </div>
 
             <div className="space-y-1">
-              <h1 className="text-2xl font-semibold leading-tight">
-                {MODEL_NAME} – acompanhante
-              </h1>
+              <div className="flex items-center gap-2">
+                <h1 className="text-2xl font-semibold leading-tight">
+                  {MODEL_NAME} – acompanhante
+                </h1>
+                <Badge variant="outline" className="text-[11px] font-normal">
+                  Perfil discreto
+                </Badge>
+              </div>
               <p className="text-sm text-muted-foreground">Programas presenciais (foco principal) em {MODEL_CITY}</p>
               <p className="text-xs text-muted-foreground">
                 Também vendo conteúdos, packs e faço chamada de vídeo — tudo combinado direto pelo WhatsApp.
