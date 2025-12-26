@@ -40,65 +40,63 @@ const Index = () => {
   };
 
   return (
-    <main className="min-h-screen bg-background px-0 py-0">
-      <div className="mx-auto flex min-h-screen max-w-4xl items-stretch px-4 py-8">
-        <Card className="surface-card-hover flex w-full flex-col overflow-hidden border border-border/70 bg-background-soft">
-          <div className="relative h-32 w-full overflow-hidden rounded-b-xl">
-            <img
-              src={bannerImage}
-              alt={`Banner de perfil de ${MODEL_NAME}`}
-              className="h-full w-full object-cover"
-              loading="lazy"
-            />
-            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-background/95 via-background/50 to-transparent" />
+    <main className="min-h-screen bg-background">
+      <Card className="surface-card-hover flex min-h-screen w-full flex-col overflow-hidden border border-border/70 bg-background-soft rounded-none">
+        <div className="relative h-24 w-full overflow-hidden">
+          <img
+            src={bannerImage}
+            alt={`Banner de perfil de ${MODEL_NAME}`}
+            className="h-full w-full object-cover"
+            loading="lazy"
+          />
+          <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-background/95 via-background/40 to-transparent" />
+        </div>
+
+        <CardContent className="relative flex flex-1 flex-col gap-6 px-5 pb-6 pt-4">
+          <div className="flex flex-wrap items-center gap-4">
+            <div className="relative -mt-12 h-24 w-24 overflow-hidden rounded-full border-2 border-border bg-background">
+              <img
+                src={galleryImage}
+                alt={`Foto de perfil de ${MODEL_NAME}`}
+                className="h-full w-full object-cover"
+                loading="lazy"
+              />
+            </div>
+
+            <div className="space-y-2">
+              <h1 className="text-xl font-semibold leading-tight">
+                {MODEL_NAME} – acompanhante
+              </h1>
+              <p className="text-sm text-muted-foreground">Programas presenciais · {MODEL_CITY}</p>
+              <div className="flex flex-wrap gap-1 text-[11px]">
+                <Badge variant="outline" className="border-border/70 bg-background/50 text-foreground">
+                  Discreta
+                </Badge>
+                <Badge variant="outline" className="border-border/70 bg-background/50 text-foreground">
+                  Ambiente reservado
+                </Badge>
+                <Badge variant="outline" className="border-border/70 bg-background/50 text-foreground">
+                  +18 apenas
+                </Badge>
+              </div>
+            </div>
           </div>
 
-          <CardContent className="flex flex-1 flex-col gap-6 px-5 pb-6 pt-4">
-            <div className="flex flex-wrap items-center gap-4">
-              <div className="h-24 w-24 -mt-10 overflow-hidden rounded-full border-2 border-border bg-background">
-                <img
-                  src={galleryImage}
-                  alt={`Foto de perfil de ${MODEL_NAME}`}
-                  className="h-full w-full object-cover"
-                  loading="lazy"
-                />
-              </div>
+          <p className="max-w-xl text-sm text-muted-foreground">
+            Acompanhante para encontros presenciais, com total sigilo. Combine o programa direto pelo WhatsApp.
+          </p>
 
-              <div className="space-y-2">
-                <h1 className="text-xl font-semibold leading-tight">
-                  {MODEL_NAME} – acompanhante
-                </h1>
-                <p className="text-sm text-muted-foreground">Programas presenciais · {MODEL_CITY}</p>
-                <div className="flex flex-wrap gap-1 text-[11px]">
-                  <Badge variant="outline" className="border-border/70 bg-background/50 text-foreground">
-                    Discreta
-                  </Badge>
-                  <Badge variant="outline" className="border-border/70 bg-background/50 text-foreground">
-                    Ambiente reservado
-                  </Badge>
-                  <Badge variant="outline" className="border-border/70 bg-background/50 text-foreground">
-                    +18 apenas
-                  </Badge>
-                </div>
-              </div>
-            </div>
-
-            <p className="text-sm text-muted-foreground max-w-xl">
-              Acompanhante para encontros presenciais, com total sigilo. Combine o programa direto pelo WhatsApp.
+          <div className="mt-auto max-w-sm space-y-2 pt-1">
+            <Button className="w-full" size="lg" onClick={handleWhatsAppClick}>
+              Chamar no WhatsApp para programa
+            </Button>
+            <p className="text-center text-[11px] leading-relaxed text-muted-foreground">
+              Você será redirecionado para o WhatsApp. Nenhum pagamento é feito pelo site, apenas o contato com a
+              acompanhante.
             </p>
-
-            <div className="mt-auto space-y-2 pt-1 max-w-sm">
-              <Button className="w-full" size="lg" onClick={handleWhatsAppClick}>
-                Chamar no WhatsApp para programa
-              </Button>
-              <p className="text-center text-[11px] leading-relaxed text-muted-foreground">
-                Você será redirecionado para o WhatsApp. Nenhum pagamento é feito pelo site, apenas o contato com a
-                acompanhante.
-              </p>
-            </div>
-          </CardContent>
-        </Card>
-      </div>
+          </div>
+        </CardContent>
+      </Card>
     </main>
   );
 };
