@@ -398,7 +398,7 @@ const Index = () => {
           <img
             src={bannerImageUrl ?? bannerImageFallback}
             alt={`Banner de perfil de ${MODEL_NAME}`}
-            className="w-full h-auto object-contain"
+            className="w-full h-auto max-h-48 md:max-h-56 object-contain"
             loading="lazy"
           />
           <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-background/95 via-background/40 to-transparent" />
@@ -428,7 +428,9 @@ const Index = () => {
                 Programas presenciais (foco principal) em {userCity ?? MODEL_CITY}
               </p>
               <p className="text-xs text-muted-foreground">
-                Também vendo conteúdos, packs e faço chamada de vídeo — tudo combinado direto pelo WhatsApp.
+                {userCity
+                  ? `Atendo discretamente em ${userCity}${userRegion ? `, ${userRegion}` : ""} e região, combinando tudo direto pelo WhatsApp.`
+                  : "Também vendo conteúdos, packs e faço chamada de vídeo — tudo combinado direto pelo WhatsApp."}
               </p>
             </div>
           </div>
