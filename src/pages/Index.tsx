@@ -64,13 +64,21 @@ const Index = () => {
             </div>
 
             <div className="space-y-2">
-              <h1 className="text-xl font-semibold leading-tight">
+              <h1 className="text-2xl font-semibold leading-tight">
                 {MODEL_NAME} – acompanhante
               </h1>
-              <p className="text-sm text-muted-foreground">Programas presenciais · {MODEL_CITY}</p>
+              <p className="text-sm text-muted-foreground">
+                Programas presenciais · Conteúdos e packs · Chamada de vídeo · {MODEL_CITY}
+              </p>
               <div className="flex flex-wrap gap-1 text-[11px]">
                 <Badge variant="outline" className="border-border/70 bg-background/50 text-foreground">
-                  Discreta
+                  Programas presenciais (principal)
+                </Badge>
+                <Badge variant="outline" className="border-border/70 bg-background/50 text-foreground">
+                  Conteúdos e packs
+                </Badge>
+                <Badge variant="outline" className="border-border/70 bg-background/50 text-foreground">
+                  Chamada de vídeo
                 </Badge>
                 <Badge variant="outline" className="border-border/70 bg-background/50 text-foreground">
                   Ambiente reservado
@@ -83,7 +91,8 @@ const Index = () => {
           </div>
 
           <p className="max-w-xl text-sm text-muted-foreground">
-            Acompanhante para encontros presenciais, com total sigilo. Combine o programa direto pelo WhatsApp.
+            Acompanhante para encontros presenciais (meu foco principal), com total sigilo. Também vendo conteúdos,
+            packs e faço chamada de vídeo — sempre combinado direto pelo WhatsApp.
           </p>
 
           <div className="mt-auto max-w-sm space-y-2 pt-1">
