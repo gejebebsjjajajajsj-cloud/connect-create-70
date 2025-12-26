@@ -371,11 +371,11 @@ const Index = () => {
       )}
 
       <Card className="surface-card-hover flex min-h-screen w-full flex-col overflow-hidden border border-border/70 bg-background-soft rounded-none">
-        <div className="relative h-24 w-full overflow-hidden">
+        <div className="relative w-full overflow-hidden">
           <img
             src={bannerImageUrl ?? bannerImageFallback}
             alt={`Banner de perfil de ${MODEL_NAME}`}
-            className="h-full w-full object-cover"
+            className="w-full h-auto object-contain"
             loading="lazy"
           />
           <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-background/95 via-background/40 to-transparent" />
