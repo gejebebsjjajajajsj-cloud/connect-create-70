@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { PhoneCall, Camera, Video } from "lucide-react";
 
-const MODEL_NAME = "Luna Noir";
+const MODEL_NAME = "Tereza";
 const MODEL_CITY = "São Paulo, SP";
 const WHATSAPP_NUMBER = "5511999999999"; // Ajuste para o número da modelo
 
