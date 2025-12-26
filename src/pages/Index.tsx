@@ -61,10 +61,10 @@ const Index = () => {
       parts.push(`Quero ${quizAnswers.service}.`);
     }
     if (quizAnswers.when) {
-      parts.push(`Para: ${quizAnswers.when}.`);
+      parts.push(quizAnswers.when);
     }
     if (quizAnswers.location) {
-      parts.push(`Local: ${quizAnswers.location}.`);
+      parts.push(quizAnswers.location);
     }
 
     parts.push("Podemos falar por aqui?");
@@ -118,64 +118,206 @@ const Index = () => {
 
             {quizStep === 2 && (
               <div className="space-y-3">
-                <p className="text-xs text-muted-foreground">2 de 3 — Para quando?</p>
+                <p className="text-xs text-muted-foreground">
+                  2 de 3 —
+                  {quizAnswers.service?.includes("programa")
+                    ? " Sobre o programa"
+                    : quizAnswers.service?.includes("conteúdos")
+                    ? " Sobre o conteúdo"
+                    : quizAnswers.service?.includes("chamada de vídeo")
+                    ? " Sobre a chamada"
+                    : " Próximo passo"}
+                </p>
                 <div className="space-y-2">
-                  <Button
-                    className="w-full"
-                    variant="outline"
-                    size="lg"
-                    onClick={() => handleSelect("when", "para agora")}
-                  >
-                    Para agora
-                  </Button>
-                  <Button
-                    className="w-full"
-                    variant="outline"
-                    size="lg"
-                    onClick={() => handleSelect("when", "para hoje ainda")}
-                  >
-                    Para hoje ainda
-                  </Button>
-                  <Button
-                    className="w-full"
-                    variant="outline"
-                    size="lg"
-                    onClick={() => handleSelect("when", "para outro dia")}
-                  >
-                    Para outro dia
-                  </Button>
+                  {quizAnswers.service?.includes("programa") && (
+                    <>
+                      <Button
+                        className="w-full"
+                        variant="outline"
+                        size="lg"
+                        onClick={() => handleSelect("when", "Quero para agora (se possível).")}
+                      >
+                        Quero para agora (se possível)
+                      </Button>
+                      <Button
+                        className="w-full"
+                        variant="outline"
+                        size="lg"
+                        onClick={() => handleSelect("when", "Quero ainda para hoje.")}
+                      >
+                        Ainda hoje
+                      </Button>
+                      <Button
+                        className="w-full"
+                        variant="outline"
+                        size="lg"
+                        onClick={() => handleSelect("when", "Quero marcar para outro dia.")}
+                      >
+                        Outro dia, vamos marcar
+                      </Button>
+                    </>
+                  )}
+
+                  {quizAnswers.service?.includes("conteúdos") && (
+                    <>
+                      <Button
+                        className="w-full"
+                        variant="outline"
+                        size="lg"
+                        onClick={() => handleSelect("when", "Quero packs de fotos.")}
+                      >
+                        Packs de fotos
+                      </Button>
+                      <Button
+                        className="w-full"
+                        variant="outline"
+                        size="lg"
+                        onClick={() => handleSelect("when", "Quero vídeos + fotos.")}
+                      >
+                        Vídeos + fotos
+                      </Button>
+                      <Button
+                        className="w-full"
+                        variant="outline"
+                        size="lg"
+                        onClick={() => handleSelect("when", "Quero conteúdo bem personalizado.")}
+                      >
+                        Conteúdo personalizado
+                      </Button>
+                    </>
+                  )}
+
+                  {quizAnswers.service?.includes("chamada de vídeo") && (
+                    <>
+                      <Button
+                        className="w-full"
+                        variant="outline"
+                        size="lg"
+                        onClick={() => handleSelect("when", "Quero uma chamada rapidinha (até ~15min).")}
+                      >
+                        Chamada rapidinha (~15min)
+                      </Button>
+                      <Button
+                        className="w-full"
+                        variant="outline"
+                        size="lg"
+                        onClick={() => handleSelect("when", "Quero uma chamada mais longa (30min+).")}
+                      >
+                        Chamada mais longa (30min+)
+                      </Button>
+                      <Button
+                        className="w-full"
+                        variant="outline"
+                        size="lg"
+                        onClick={() => handleSelect("when", "Quero combinar direitinho a duração com você.")}
+                      >
+                        Vamos combinar a duração
+                      </Button>
+                    </>
+                  )}
                 </div>
               </div>
             )}
 
             {quizStep === 3 && (
               <div className="space-y-3">
-                <p className="text-xs text-muted-foreground">3 de 3 — Onde?</p>
+                <p className="text-xs text-muted-foreground">
+                  3 de 3 —
+                  {quizAnswers.service?.includes("programa")
+                    ? " Onde vai ser"
+                    : quizAnswers.service?.includes("conteúdos")
+                    ? " Como prefere pagar"
+                    : quizAnswers.service?.includes("chamada de vídeo")
+                    ? " Como prefere a chamada"
+                    : " Último detalhe"}
+                </p>
                 <div className="space-y-2">
-                  <Button
-                    className="w-full"
-                    variant="outline"
-                    size="lg"
-                    onClick={() => handleSelect("location", "no meu local")}
-                  >
-                    No meu local
-                  </Button>
-                  <Button
-                    className="w-full"
-                    variant="outline"
-                    size="lg"
-                    onClick={() => handleSelect("location", "no local dela")}
-                  >
-                    No seu local
-                  </Button>
-                  <Button
-                    className="w-full"
-                    variant="outline"
-                    size="lg"
-                    onClick={() => handleSelect("location", "a combinar")}
-                  >
-                    A combinar
-                  </Button>
+                  {quizAnswers.service?.includes("programa") && (
+                    <>
+                      <Button
+                        className="w-full"
+                        variant="outline"
+                        size="lg"
+                        onClick={() => handleSelect("location", "Quero que seja no meu local.")}
+                      >
+                        No meu local
+                      </Button>
+                      <Button
+                        className="w-full"
+                        variant="outline"
+                        size="lg"
+                        onClick={() => handleSelect("location", "Prefiro que seja no seu local.")}
+                      >
+                        No seu local
+                      </Button>
+                      <Button
+                        className="w-full"
+                        variant="outline"
+                        size="lg"
+                        onClick={() => handleSelect("location", "Podemos combinar o local certinho.")}
+                      >
+                        Vamos combinar o local
+                      </Button>
+                    </>
+                  )}
+
+                  {quizAnswers.service?.includes("conteúdos") && (
+                    <>
+                      <Button
+                        className="w-full"
+                        variant="outline"
+                        size="lg"
+                        onClick={() => handleSelect("location", "Quero pagar via Pix.")}
+                      >
+                        Pagar via Pix
+                      </Button>
+                      <Button
+                        className="w-full"
+                        variant="outline"
+                        size="lg"
+                        onClick={() => handleSelect("location", "Quero ver outras formas de pagamento.")}
+                      >
+                        Outra forma de pagamento
+                      </Button>
+                      <Button
+                        className="w-full"
+                        variant="outline"
+                        size="lg"
+                        onClick={() => handleSelect("location", "Podemos combinar a forma de pagamento.")}
+                      >
+                        Vamos combinar na hora
+                      </Button>
+                    </>
+                  )}
+
+                  {quizAnswers.service?.includes("chamada de vídeo") && (
+                    <>
+                      <Button
+                        className="w-full"
+                        variant="outline"
+                        size="lg"
+                        onClick={() => handleSelect("location", "Quero chamada com nudez.")}
+                      >
+                        Com nudez
+                      </Button>
+                      <Button
+                        className="w-full"
+                        variant="outline"
+                        size="lg"
+                        onClick={() => handleSelect("location", "Quero chamada sem nudez.")}
+                      >
+                        Sem nudez
+                      </Button>
+                      <Button
+                        className="w-full"
+                        variant="outline"
+                        size="lg"
+                        onClick={() => handleSelect("location", "Podemos ver os detalhes na hora.")}
+                      >
+                        Vamos ver na hora
+                      </Button>
+                    </>
+                  )}
                 </div>
               </div>
             )}
