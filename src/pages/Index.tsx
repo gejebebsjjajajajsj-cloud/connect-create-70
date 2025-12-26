@@ -114,13 +114,91 @@ const Index = () => {
             Perfil simples e discreto para você chamar direto no WhatsApp e combinar o programa do seu jeito.
           </p>
 
+          {quizOpen && (
+            <div className="mt-4 w-full max-w-sm space-y-3 rounded-md border border-border/60 bg-background-soft p-3">
+              <p className="text-sm font-semibold">Antes de abrir o WhatsApp, me conta rapidinho o que você quer:</p>
+
+              {quizStep === 1 && (
+                <div className="space-y-2">
+                  <p className="text-xs text-muted-foreground">1 de 3 — O que você procura?</p>
+                  <div className="space-y-2">
+                    <Button className="w-full" variant="outline" size="lg" onClick={() => handleSelect("service", "marcar um programa presencial")}
+                    >
+                      Marcar programa presencial
+                    </Button>
+                    <Button className="w-full" variant="outline" size="lg" onClick={() => handleSelect("service", "comprar conteúdos e fotos")}
+                    >
+                      Comprar conteúdos / fotos
+                    </Button>
+                    <Button className="w-full" variant="outline" size="lg" onClick={() => handleSelect("service", "fazer chamada de vídeo")}
+                    >
+                      Chamada de vídeo
+                    </Button>
+                  </div>
+                </div>
+              )}
+
+              {quizStep === 2 && (
+                <div className="space-y-2">
+                  <p className="text-xs text-muted-foreground">2 de 3 — Para quando?</p>
+                  <div className="space-y-2">
+                    <Button className="w-full" variant="outline" size="lg" onClick={() => handleSelect("when", "para agora")}
+                    >
+                      Para agora
+                    </Button>
+                    <Button className="w-full" variant="outline" size="lg" onClick={() => handleSelect("when", "para hoje ainda")}
+                    >
+                      Para hoje ainda
+                    </Button>
+                    <Button className="w-full" variant="outline" size="lg" onClick={() => handleSelect("when", "para outro dia")}
+                    >
+                      Para outro dia
+                    </Button>
+                  </div>
+                </div>
+              )}
+
+              {quizStep === 3 && (
+                <div className="space-y-2">
+                  <p className="text-xs text-muted-foreground">3 de 3 — Onde?</p>
+                  <div className="space-y-2">
+                    <Button className="w-full" variant="outline" size="lg" onClick={() => handleSelect("location", "no meu local")}
+                    >
+                      No meu local
+                    </Button>
+                    <Button className="w-full" variant="outline" size="lg" onClick={() => handleSelect("location", "no local dela")}
+                    >
+                      No seu local
+                    </Button>
+                    <Button className="w-full" variant="outline" size="lg" onClick={() => handleSelect("location", "a combinar")}
+                    >
+                      A combinar
+                    </Button>
+                  </div>
+                </div>
+              )}
+
+              <div className="space-y-2 pt-1">
+                <Button className="w-full" size="lg" onClick={finalizeWhatsApp}>
+                  Ir para o WhatsApp
+                </Button>
+                <button
+                  type="button"
+                  onClick={finalizeWhatsApp}
+                  className="w-full text-center text-[11px] text-muted-foreground underline"
+                >
+                  Pular perguntas e ir direto
+                </button>
+              </div>
+            </div>
+          )}
+
           <div className="mt-auto max-w-sm space-y-2 pt-1">
             <Button className="w-full" size="lg" onClick={openQuiz}>
               Chamar no WhatsApp
             </Button>
             <p className="text-center text-[11px] leading-relaxed text-muted-foreground">
-              Você será redirecionado para o WhatsApp. Nenhum pagamento é feito pelo site, apenas o contato com a
-              acompanhante.
+              Você será redirecionado para o WhatsApp para combinar programa, conteúdos ou chamada de vídeo direto comigo.
             </p>
           </div>
         </CardContent>
