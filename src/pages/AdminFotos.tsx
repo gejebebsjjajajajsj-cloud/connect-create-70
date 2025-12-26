@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -9,7 +9,13 @@ const AdminFotos = () => {
   const { toast } = useToast();
   const [perfilFile, setPerfilFile] = useState<File | null>(null);
   const [bannerFile, setBannerFile] = useState<File | null>(null);
+  const [phoneNumber, setPhoneNumber] = useState("");
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    const savedPhone = window.localStorage.getItem("whatsapp_number");
+    if (savedPhone) setPhoneNumber(savedPhone);
+  }, []);
 
   const handleUpload = async () => {
     if (!perfilFile && !bannerFile) {
@@ -24,6 +30,10 @@ const AdminFotos = () => {
     try {
       setLoading(true);
       const updates: { profile_url?: string; banner_url?: string } = {};
+
+      if (phoneNumber) {
+        window.localStorage.setItem("whatsapp_number", phoneNumber);
+      }
 
       if (perfilFile) {
         const perfilPath = `perfil-${Date.now()}-${perfilFile.name}`;
@@ -86,6 +96,19 @@ const AdminFotos = () => {
           </div>
 
           <div className="space-y-4 text-sm">
+            <div className="space-y-2">
+              <p className="text-xs font-medium text-muted-foreground">Número de WhatsApp</p>
+              <Input
+                type="tel"
+                placeholder="5511999999999"
+                value={phoneNumber}
+                onChange={(e) => setPhoneNumber(e.target.value)}
+              />
+              <p className="text-[11px] text-muted-foreground">
+                Esse é o número para onde o quiz e o botão do site vão mandar a pessoa.
+              </p>
+            </div>
+
             <div className="space-y-2">
               <p className="text-xs font-medium text-muted-foreground">Foto de perfil</p>
               <Input

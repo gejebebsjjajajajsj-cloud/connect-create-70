@@ -48,6 +48,7 @@ const Index = () => {
   const [bannerImageUrl, setBannerImageUrl] = useState<string | null>(null);
   const [userCity, setUserCity] = useState<string | null>(null);
   const [userRegion, setUserRegion] = useState<string | null>(null);
+  const [whatsAppNumber, setWhatsAppNumber] = useState(WHATSAPP_NUMBER);
 
   useEffect(() => {
     const loadImages = async () => {
@@ -65,6 +66,9 @@ const Index = () => {
     };
 
     loadImages();
+
+    const savedPhone = window.localStorage.getItem("whatsapp_number");
+    if (savedPhone) setWhatsAppNumber(savedPhone);
   }, []);
 
   useEffect(() => {
@@ -115,7 +119,7 @@ const Index = () => {
     parts.push("Podemos falar por aqui?");
 
     const text = parts.join(" ");
-    const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`;
+    const url = `https://wa.me/${whatsAppNumber}?text=${encodeURIComponent(text)}`;
     window.open(url, "_blank", "noopener,noreferrer");
     setQuizOpen(false);
   };
