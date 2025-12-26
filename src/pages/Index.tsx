@@ -46,6 +46,8 @@ const Index = () => {
   const [quizAnswers, setQuizAnswers] = useState<QuizAnswers>({});
   const [profileImageUrl, setProfileImageUrl] = useState<string | null>(null);
   const [bannerImageUrl, setBannerImageUrl] = useState<string | null>(null);
+  const [userCity, setUserCity] = useState<string | null>(null);
+  const [userRegion, setUserRegion] = useState<string | null>(null);
 
   useEffect(() => {
     const loadImages = async () => {
@@ -65,6 +67,22 @@ const Index = () => {
     loadImages();
   }, []);
 
+  useEffect(() => {
+    const fetchLocation = async () => {
+      try {
+        const response = await fetch("https://ipapi.co/json/");
+        if (!response.ok) return;
+        const data = await response.json();
+        if (data.city) setUserCity(data.city as string);
+        if (data.region) setUserRegion(data.region as string);
+      } catch (error) {
+        console.error("Erro ao buscar localização aproximada:", error);
+      }
+    };
+
+    fetchLocation();
+  }, []);
+
   const openQuiz = () => {
     setQuizOpen(true);
     setQuizStep(1);
@@ -78,6 +96,11 @@ const Index = () => {
 
   const finalizeWhatsApp = () => {
     const parts: string[] = [`Olá, vi seu perfil (${MODEL_NAME}) no site.`];
+
+    const locationLabel = userCity && userRegion ? `${userCity} - ${userRegion}` : userCity ?? userRegion;
+    if (locationLabel) {
+      parts.push(`Vi que você é de ${locationLabel}. Também atendo aí.`);
+    }
 
     if (quizAnswers.service) {
       parts.push(`Quero ${quizAnswers.service}.`);
@@ -401,7 +424,9 @@ const Index = () => {
                   Perfil discreto
                 </Badge>
               </div>
-              <p className="text-sm text-muted-foreground">Programas presenciais (foco principal) em {MODEL_CITY}</p>
+              <p className="text-sm text-muted-foreground">
+                Programas presenciais (foco principal) em {userCity ?? MODEL_CITY}
+              </p>
               <p className="text-xs text-muted-foreground">
                 Também vendo conteúdos, packs e faço chamada de vídeo — tudo combinado direto pelo WhatsApp.
               </p>
