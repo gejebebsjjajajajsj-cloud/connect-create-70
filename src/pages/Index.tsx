@@ -40,22 +40,22 @@ const Index = () => {
   };
 
   return (
-    <main className="flex min-h-screen items-center justify-center px-4 py-10">
-      <div className="w-full max-w-md">
-        <Card className="border border-border/60 bg-background-soft">
-          <div className="relative h-40 w-full overflow-hidden">
+    <main className="min-h-screen bg-background px-0 py-0">
+      <div className="mx-auto flex min-h-screen max-w-4xl items-stretch px-4 py-8">
+        <Card className="surface-card-hover flex w-full flex-col overflow-hidden border border-border/70 bg-background-soft">
+          <div className="relative h-32 w-full overflow-hidden rounded-b-xl">
             <img
               src={bannerImage}
               alt={`Banner de perfil de ${MODEL_NAME}`}
               className="h-full w-full object-cover"
               loading="lazy"
             />
-            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-background/90 via-background/40 to-transparent" />
+            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-background/95 via-background/50 to-transparent" />
           </div>
 
-          <CardContent className="space-y-4 px-4 pb-5 pt-4">
-            <div className="flex items-center gap-4">
-              <div className="h-20 w-20 overflow-hidden rounded-full border border-border bg-background">
+          <CardContent className="flex flex-1 flex-col gap-6 px-5 pb-6 pt-4">
+            <div className="flex flex-wrap items-center gap-4">
+              <div className="h-24 w-24 -mt-10 overflow-hidden rounded-full border-2 border-border bg-background">
                 <img
                   src={galleryImage}
                   alt={`Foto de perfil de ${MODEL_NAME}`}
@@ -64,8 +64,8 @@ const Index = () => {
                 />
               </div>
 
-              <div className="space-y-1">
-                <h1 className="text-lg font-semibold leading-tight">
+              <div className="space-y-2">
+                <h1 className="text-xl font-semibold leading-tight">
                   {MODEL_NAME} – acompanhante
                 </h1>
                 <p className="text-sm text-muted-foreground">Programas presenciais · {MODEL_CITY}</p>
@@ -83,11 +83,11 @@ const Index = () => {
               </div>
             </div>
 
-            <p className="text-sm text-muted-foreground">
-              Atendo apenas homens respeitosos, com total sigilo. Combine tudo direto comigo pelo WhatsApp.
+            <p className="text-sm text-muted-foreground max-w-xl">
+              Acompanhante para encontros presenciais, com total sigilo. Combine o programa direto pelo WhatsApp.
             </p>
 
-            <div className="space-y-2 pt-1">
+            <div className="mt-auto space-y-2 pt-1 max-w-sm">
               <Button className="w-full" size="lg" onClick={handleWhatsAppClick}>
                 Chamar no WhatsApp para programa
               </Button>
