@@ -63,36 +63,19 @@ const Index = () => {
               />
             </div>
 
-            <div className="space-y-2">
+            <div className="space-y-1">
               <h1 className="text-2xl font-semibold leading-tight">
                 {MODEL_NAME} – acompanhante
               </h1>
-              <p className="text-sm text-muted-foreground">
-                Programas presenciais · Conteúdos e packs · Chamada de vídeo · {MODEL_CITY}
+              <p className="text-sm text-muted-foreground">Programas presenciais (foco principal) em {MODEL_CITY}</p>
+              <p className="text-xs text-muted-foreground">
+                Também vendo conteúdos, packs e faço chamada de vídeo — tudo combinado direto pelo WhatsApp.
               </p>
-              <div className="flex flex-wrap gap-1 text-[11px]">
-                <Badge variant="outline" className="border-border/70 bg-background/50 text-foreground">
-                  Programas presenciais (principal)
-                </Badge>
-                <Badge variant="outline" className="border-border/70 bg-background/50 text-foreground">
-                  Conteúdos e packs
-                </Badge>
-                <Badge variant="outline" className="border-border/70 bg-background/50 text-foreground">
-                  Chamada de vídeo
-                </Badge>
-                <Badge variant="outline" className="border-border/70 bg-background/50 text-foreground">
-                  Ambiente reservado
-                </Badge>
-                <Badge variant="outline" className="border-border/70 bg-background/50 text-foreground">
-                  +18 apenas
-                </Badge>
-              </div>
             </div>
           </div>
 
           <p className="max-w-xl text-sm text-muted-foreground">
-            Acompanhante para encontros presenciais (meu foco principal), com total sigilo. Também vendo conteúdos,
-            packs e faço chamada de vídeo — sempre combinado direto pelo WhatsApp.
+            Perfil simples e discreto para você chamar direto no WhatsApp e combinar o programa do seu jeito.
           </p>
 
           <div className="mt-auto max-w-sm space-y-2 pt-1">
