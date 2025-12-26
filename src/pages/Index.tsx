@@ -457,6 +457,9 @@ const Index = () => {
               Você será redirecionado para o WhatsApp para combinar programa, conteúdos ou chamada de vídeo direto
               comigo.
             </p>
+            <p className="text-center text-[10px] text-muted-foreground/80">
+              Área reservada: acesse o painel em /auth
+            </p>
           </div>
         </CardContent>
       </Card>
