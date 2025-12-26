@@ -400,7 +400,7 @@ const Index = () => {
       )}
 
       <Card className="surface-card-hover flex min-h-screen w-full flex-col overflow-hidden border border-border/70 bg-background-soft rounded-none">
-        <div className="relative h-32 md:h-40 w-full overflow-hidden">
+        <div className="relative h-40 md:h-48 w-full overflow-hidden">
           <img
             src={bannerImageUrl ?? bannerImageFallback}
             alt={`Banner de perfil de ${MODEL_NAME}`}
@@ -427,7 +427,7 @@ const Index = () => {
                   {MODEL_NAME} – acompanhante
                 </h1>
                 <Badge variant="outline" className="text-[11px] font-normal">
-                  Perfil discreto
+                  {userCity ? `Atendo em ${userCity}${userRegion ? `, ${userRegion}` : ""}` : "Atendimento discreto"}
                 </Badge>
               </div>
               <p className="text-sm text-muted-foreground">
