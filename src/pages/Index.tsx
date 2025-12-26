@@ -99,24 +99,13 @@ const Index = () => {
   };
 
   const finalizeWhatsApp = () => {
-    const parts: string[] = [`Olá, vi seu perfil (${MODEL_NAME}) no site.`];
-
-    const locationLabel = userCity && userRegion ? `${userCity} - ${userRegion}` : userCity ?? userRegion;
-    if (locationLabel) {
-      parts.push(`Vi que você é de ${locationLabel}. Também atendo aí.`);
-    }
+    const parts: string[] = [`Oi ${MODEL_NAME}, vim pelo seu site e gostaria de`];
 
     if (quizAnswers.service) {
-      parts.push(`Quero ${quizAnswers.service}.`);
+      parts.push(`${quizAnswers.service}.`);
+    } else {
+      parts.push("combinar um atendimento.");
     }
-    if (quizAnswers.when) {
-      parts.push(quizAnswers.when);
-    }
-    if (quizAnswers.location) {
-      parts.push(quizAnswers.location);
-    }
-
-    parts.push("Podemos falar por aqui?");
 
     const text = parts.join(" ");
     const url = `https://wa.me/${whatsAppNumber}?text=${encodeURIComponent(text)}`;
